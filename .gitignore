@@ -1,0 +1,4 @@
+nimcache
+.directory
+.kate*
+examples/spnav_logger_example
