@@ -58,7 +58,8 @@ TODO
 TODO
 
 ## Usage
-Import the *spnav* module from this package to starting using the bindings:
+Import the *spnav* module from this package to make the bindings available in
+your project:
 
 ```nimrod
 import spnav
@@ -68,7 +69,7 @@ Linux: If your installation of libspnav includes the X11 related Spacenav APIs,
 which is the default for binary distributions, you must also link against the
 X11 library by adding the following parameter to the Nim compiler command line:
 
-```--passL:"-lX11"```
+`--passL:"-lX11"`
 
 ## References
 * [Spacenav Project Page](http://spacenav.sourceforge.net/)
