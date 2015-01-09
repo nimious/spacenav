@@ -1,10 +1,10 @@
 # io-spacenav
-Nim bindings for libspnav, the free 3Dconnexion device driver.
+Nim bindings for *libspnav*, the free 3Dconnexion device driver.
 
 ![io-spacenav Logo](logo.png)
 
 ## About
-io-spacenav is a module with bindings to the Spacenav SDK (libspnav) for the Nim
+io-spacenav contains bindings to the Spacenav SDK (libspnav) for the Nim
 programming language. Spacenav provides a free, compatible and open source
 alternative to 3Dconnexion's popular 3D input device drivers and SDK.
 
@@ -24,7 +24,8 @@ This module currently supports bindings for the following platforms:
 - ~~MacOSX~~
 
 If you wish to use USB based 3Dconnexion devices in Nim under MacOSX or Windows,
-you may also consider using [io-3dxware](https://github.com/nimious/io-3dxware).
+you may also consider using [io-3dxware](https://github.com/nimious/io-3dxware)
+bindings instead.
 
 ## Prerequisites
 To compile the bindings in this module you must have **libspnav**, the Spacenav
@@ -48,24 +49,28 @@ It is then preferable to manually build the daemon and SDK from the source code
 in the Sourceforge repository.
 
 ### MacOSX
-
 TODO
 
 ### FreeBSD
-
 TODO
 
 ### Windows
-
 TODO
 
 ## Usage
+Import the *spnav* module from this package to starting using the bindings:
 
-TODO
+```nimrod
+import spnav
+```
 
+Linux: If your installation of libspnav includes the X11 related Spacenav APIs,
+which is the default for binary distributions, you must also link against the
+X11 library by adding the following parameter to the Nim compiler command line:
+
+```--passL:"-lX11"```
 
 ## References
-
 * [Spacenav Project Page](http://spacenav.sourceforge.net/)
 * [Spacenav on Sourceforge](http://sourceforge.net/projects/spacenav/)
 * [3Dconnexion Homepage](http://www.3dconnexion.com/i)
