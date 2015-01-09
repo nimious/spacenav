@@ -30,23 +30,23 @@ const
 
 
 type
-  SpnavMotionEvent* = object
+  SpnavMotionEvent* {.packed.} = object
     ## Structure for motion events (spnav_event_motion)
-    motionType*: int
-    x*, y*: int
-    rx*, ry*, rz*: int
-    period*: uint
-    data*: ptr int
+    motionType*: int16
+    x*, y*, z*: int16
+    rx*, ry*, rz*: int16
+    period*: uint16
+    data*: ptr int16
 
-  SpnavButtonEvent* = object
+  SpnavButtonEvent* {.packed.} = object
     ## Structure for button events (spnav_event_button)
-    buttonType*: int
-    press*: int
-    bnum*: int
+    buttonType*: int16
+    press*: int16
+    bnum*: int16
 
-  SpnavEvent* {.union.} = object
+  SpnavEvent* {.packed, union.} = object
     ## Union type for events (spnav_event)
-    eventType*: int
+    eventType*: int16
     motion*: SpnavMotionEvent
     button*: SpnavButtonEvent
 
