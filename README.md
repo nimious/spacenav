@@ -71,6 +71,7 @@ TODO
 
 # References
 
-* [Spacenav web site](http://spacenav.sourceforge.net/)
-* [Spacenav on sourceforge](http://sourceforge.net/projects/spacenav/)
-* [3Dconnexion web site](http://www.3dconnexion.com/i)
+* [Spacenav Project Page](http://spacenav.sourceforge.net/)
+* [Spacenav on Sourceforge](http://sourceforge.net/projects/spacenav/)
+* [3Dconnexion Homepage](http://www.3dconnexion.com/i)
+* [Nim Programming Language](http://nim-lang.org/)
