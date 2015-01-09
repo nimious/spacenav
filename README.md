@@ -1,14 +1,14 @@
 # io-spacenav
-Nim bindings for libspnav, the free 3Dconnexion device driver
+Nim bindings for libspnav, the free 3Dconnexion device driver.
 
 ![io-spacenav Logo](logo.png)
 
 ## About
 io-spacenav is a module with bindings to the Spacenav SDK (libspnav) for the Nim
 programming language. Spacenav provides a free, compatible and open source
-alternative for 3Dconnexion's popular 3D input device drivers and SDK.
+alternative to 3Dconnexion's popular 3D input device drivers and SDK.
 
-## Supported Devices & Platforms
+## Supported Platforms
 The latest version of this module has been tested with **spacenavd 0.6**
 and **libspnav 0.2.3**, which currently support the following devices:
 
@@ -17,29 +17,25 @@ and **libspnav 0.2.3**, which currently support the following devices:
 
 Support for USB devices under Windows and MacOSX is underway, but incomplete.
 
-Out of the platforms officially supported by Spacenav, the following have been
-implemented and tested with this module:
+This module currently supports bindings for the following platforms:
 
 - ~~FreeBSD~~
 - Linux
 - ~~MacOSX~~
 
-Please note that there is currently no single library that supports all of
-FreeBSD, Linux, MacOSX and Windows. If you wish to use USB based 3Dconnexion
-devices in Nim under MacOSX or Windows, please consider using the
-[io-3dxware](https://github.com/nimious/io-3dxware) bindings instead!
-
+If you wish to use USB based 3Dconnexion devices in Nim under MacOSX or Windows,
+you may also consider using [io-3dxware](https://github.com/nimious/io-3dxware).
 
 ## Prerequisites
-To compile the bindings in this module, you need to have **libspnav**, the
-Spacenav SDK library, installed on your computer. Users of your program also
-need to install and run **spacenavd**, the Spacenav Daemon, that implements the
-actual device driver for 3Dconnexion input devices.
+To compile the bindings in this module you must have **libspnav**, the Spacenav
+SDK library, installed on your computer. Users of your program also need to
+install and run **spacenavd**, the Spacenav Daemon, that implements the actual
+device driver.
 
 ### Linux
 If your Linux distribution includes a package manager or community repository,
 it may already have pre-compiled binaries for both the Daemon and the SDK. For
-example, on ArchLinux the SDK is available in the official repository:
+example, on ArchLinux the SDK is available in the official package repository:
 
 `sudo pacman -Sy libspnav`
 
@@ -48,9 +44,8 @@ The daemon is available in AUR:
 `yaourt spacenavd`
 
 Make sure to verify the available version numbers as they may be very outdated.
-It is then preferable to follow the instructions in the Spacenav sourceforge
-repository to manually build the daemon and SDK from source.
-
+It is then preferable to manually build the daemon and SDK from the source code
+in the Sourceforge repository.
 
 ### MacOSX
 
@@ -64,12 +59,12 @@ TODO
 
 TODO
 
-# Usage
+## Usage
 
 TODO
 
 
-# References
+## References
 
 * [Spacenav Project Page](http://spacenav.sourceforge.net/)
 * [Spacenav on Sourceforge](http://sourceforge.net/projects/spacenav/)
