@@ -18,6 +18,9 @@
 when defined(linux) and not defined(android):
   const
     dllname = "libspnav.so"
+when defined(macosx):
+  const
+    dllname = "libspnav.dylib"
 else:
   {.error: "Platform does not support libspnav".}
 
@@ -51,39 +54,39 @@ type
     button*: SpnavButtonEvent
 
 
-proc spnavOpen*(): int {.dynlib: dllname, importc: "spnav_open".}
+proc spnavOpen*(): int {.cdecl, dynlib: dllname, importc: "spnav_open".}
   ## Opens a connection to the Spacenav daemon.
   ##
   ## Returns `SPNAV_ERROR` on failure.
 
-proc spnavClose*(): int {.dynlib: dllname, importc: "spnav_close".}
+proc spnavClose*(): int {.cdecl, dynlib: dllname, importc: "spnav_close".}
   ## Closes a previously opened connection to the Spacenav daemon.
   ##
   ## Returns `SPNAV_ERROR` on failure.
 
-proc spnavFd*(): int {.dynlib: dllname, importc: "spnav_fd".}
+proc spnavFd*(): int {.cdecl, dynlib: dllname, importc: "spnav_fd".}
   ## Retrieves the file descriptor used for communication with the daemon.
   ##
   ## Returns the file descriptor on success, or `SPNAV_ERROR` on error or if no
   ## connection is open.
 
-proc spnavSensitivity*(sens: float64): int {.dynlib: dllname, importc: "spnav_sensitivity".}
+proc spnavSensitivity*(sens: float64): int {.cdecl, dynlib: dllname, importc: "spnav_sensitivity".}
 
-proc spnavWaitEvent*(event: ptr SpnavEvent): int {.dynlib: dllname, importc: "spnav_wait_event".}
+proc spnavWaitEvent*(event: ptr SpnavEvent): int {.cdecl, dynlib: dllname, importc: "spnav_wait_event".}
   ## Blocks waiting for a Spacenav events.
   ##
   ## - ``event`` Pointer to a *SpnavEvent* object that will hold the event data
   ##
   ## Returns the event type, or 0 if an error occured.
 
-proc spnavPollEvent*(event: ptr SpnavEvent): int {.dynlib: dllname, importc: "spnav_poll_event".}
+proc spnavPollEvent*(event: ptr SpnavEvent): int {.cdecl, dynlib: dllname, importc: "spnav_poll_event".}
   ## Checks for availability of Spacenav events without blocking.
   ##
   ## - ``event`` Pointer to a *SpnavEvent* object that will hold the event data
   ##
   ## Returns the event type, or 0 if no event was available.
 
-proc spnavRemoveEvents*(eventType: int): int {.dynlib: dllname, importc: "spnav_remove_events".}
+proc spnavRemoveEvents*(eventType: int): int {.cdecl, dynlib: dllname, importc: "spnav_remove_events".}
   ## Removes any pending events of the specified type. Pass *SPNAV_EVENT_ANY* to
   ## remove all events.
   ##

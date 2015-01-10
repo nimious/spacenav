@@ -19,12 +19,13 @@ which currently support the following devices:
 - All serial Spaceball devices (Linux, FreeBSD, MacOSX)
 
 Support for USB devices under Windows and MacOSX is underway, but incomplete.
+The daemon will compile and run, but USB devices may not work or will crash.
 
 The bindings in this package currently support the following platforms:
 
 - ~~FreeBSD~~
 - Linux
-- ~~MacOSX~~
+- MacOSX
 
 If you wish to use USB based 3Dconnexion devices under MacOSX or Windows, you
 may also consider using the [io-3dxware](https://github.com/nimious/io-3dxware)
