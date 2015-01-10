@@ -2,7 +2,7 @@
 name: "io-spacenav"
 version: "0.1"
 author: "Gerke Max Preussner <info@nimio.us>"
-description: "Wrapper for libspnav, the free 3Dconnexion device driver"
+description: "Bindings for libspnav, the free 3Dconnexion device driver"
 license: "MIT"
 srcDir: "src"
 
