@@ -57,7 +57,9 @@ in the Sourceforge repository.
 
 ### MacOSX
 
-TODO
+Download the source code for both spacenavd and libspnav from the Spacenav
+Sourceforge repository and follow the instructions in their README file for
+building and installing them.
 
 ### FreeBSD
 
