@@ -18,7 +18,7 @@
 when defined(linux) and not defined(android):
   const
     dllname = "libspnav.so"
-when defined(macosx):
+elif defined(macosx):
   const
     dllname = "libspnav.dylib"
 else:
@@ -35,58 +35,59 @@ const
 type
   SpnavMotionEvent* {.packed.} = object
     ## Structure for motion events (spnav_event_motion)
-    motionType*: int16
-    x*, y*, z*: int16
-    rx*, ry*, rz*: int16
-    period*: uint16
-    data*: ptr int16
+    motionType*: cint
+    x*, y*, z*: cint
+    rx*, ry*, rz*: cint
+    period*: cuint
+    data*: ptr cint
 
   SpnavButtonEvent* {.packed.} = object
     ## Structure for button events (spnav_event_button)
-    buttonType*: int16
-    press*: int16
-    bnum*: int16
+    buttonType*: cint
+    pressed*: cint
+    buttonId*: cint
 
   SpnavEvent* {.packed, union.} = object
     ## Union type for events (spnav_event)
-    eventType*: int16
+    eventType*: cint
     motion*: SpnavMotionEvent
     button*: SpnavButtonEvent
 
 
-proc spnavOpen*(): int {.cdecl, dynlib: dllname, importc: "spnav_open".}
+proc spnavOpen*(): cint {.cdecl, dynlib: dllname, importc: "spnav_open".}
   ## Opens a connection to the Spacenav daemon.
   ##
   ## Returns `SPNAV_ERROR` on failure.
 
-proc spnavClose*(): int {.cdecl, dynlib: dllname, importc: "spnav_close".}
+proc spnavClose*(): cint {.cdecl, dynlib: dllname, importc: "spnav_close".}
   ## Closes a previously opened connection to the Spacenav daemon.
   ##
   ## Returns `SPNAV_ERROR` on failure.
 
-proc spnavFd*(): int {.cdecl, dynlib: dllname, importc: "spnav_fd".}
+proc spnavFd*(): cint {.cdecl, dynlib: dllname, importc: "spnav_fd".}
   ## Retrieves the file descriptor used for communication with the daemon.
   ##
   ## Returns the file descriptor on success, or `SPNAV_ERROR` on error or if no
   ## connection is open.
 
-proc spnavSensitivity*(sens: float64): int {.cdecl, dynlib: dllname, importc: "spnav_sensitivity".}
+proc spnavSensitivity*(sens: float64): cint {.cdecl, dynlib: dllname, importc: "spnav_sensitivity".}
+  # TODO: document
 
-proc spnavWaitEvent*(event: ptr SpnavEvent): int {.cdecl, dynlib: dllname, importc: "spnav_wait_event".}
+proc spnavWaitEvent*(event: ptr SpnavEvent): cint {.cdecl, dynlib: dllname, importc: "spnav_wait_event".}
   ## Blocks waiting for a Spacenav events.
   ##
   ## - ``event`` Pointer to a *SpnavEvent* object that will hold the event data
   ##
   ## Returns the event type, or 0 if an error occured.
 
-proc spnavPollEvent*(event: ptr SpnavEvent): int {.cdecl, dynlib: dllname, importc: "spnav_poll_event".}
+proc spnavPollEvent*(event: ptr SpnavEvent): cint {.cdecl, dynlib: dllname, importc: "spnav_poll_event".}
   ## Checks for availability of Spacenav events without blocking.
   ##
   ## - ``event`` Pointer to a *SpnavEvent* object that will hold the event data
   ##
   ## Returns the event type, or 0 if no event was available.
 
-proc spnavRemoveEvents*(eventType: int): int {.cdecl, dynlib: dllname, importc: "spnav_remove_events".}
+proc spnavRemoveEvents*(eventType: cint): cint {.cdecl, dynlib: dllname, importc: "spnav_remove_events".}
   ## Removes any pending events of the specified type. Pass *SPNAV_EVENT_ANY* to
   ## remove all events.
   ##

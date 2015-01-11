@@ -39,6 +39,10 @@ SDK library, installed on your computer. Users of your program also need to
 install and run **spacenavd**, the Spacenav Daemon, that implements the actual
 device driver.
 
+### FreeBSD
+
+TODO
+
 ### Linux
 
 If your Linux distribution includes a package manager or community repository,
@@ -61,10 +65,6 @@ Download the source code for both spacenavd and libspnav from the Spacenav
 Sourceforge repository and follow the instructions in their README file for
 building and installing them.
 
-### FreeBSD
-
-TODO
-
 ### Windows
 
 TODO
@@ -72,7 +72,7 @@ TODO
 
 ## Dependencies
 
-io-spacenav has no dependencies to any other Nim packages.
+io-spacenav does not have any dependencies to other Nim packages at this time.
 
 
 ## Usage
@@ -93,14 +93,16 @@ X11 library by adding the following parameter to the Nim compiler command line:
 
 ## Support
 
-Please submit a pull request or email us at info@nimio.us if this package is out
-of date or contains bugs. For all other issues related to input devices or the
-device driver software please visit the 3Dconnexion or Spacenav web sites.
+Please [file an issue](https://github.com/nimious/io-spacenav/issues), submit a
+[pull request](https://github.com/nimious/io-spacenav/pulls?q=is%3Aopen+is%3Apr)
+or email us at info@nimio.us if this package is out of date or contains bugs.
+For issues related to input devices or the device driver software please visit
+the 3Dconnexion or Spacenav web sites.
 
 
 ## References
 
 * [Spacenav Project Page](http://spacenav.sourceforge.net/)
 * [Spacenav on Sourceforge](http://sourceforge.net/projects/spacenav/)
-* [3Dconnexion Homepage](http://www.3dconnexion.com/i)
+* [3Dconnexion Homepage](http://www.3dconnexion.com/)
 * [Nim Programming Language](http://nim-lang.org/)

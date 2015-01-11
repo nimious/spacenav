@@ -36,8 +36,8 @@ else:
     of SPNAV_EVENT_BUTTON:
       echo "Button event  ",
         "| type: ", e.button.buttonType,
-        ", press: ", e.button.press,
-        ", bnum: ", e.button.bnum
+        ", pressed: ", e.button.pressed,
+        ", buttonId: ", e.button.buttonId
     of SPNAV_EVENT_MOTION:
       echo "Motion event  ",
         "| type: ", e.motion.motionType,
