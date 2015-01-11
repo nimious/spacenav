@@ -96,8 +96,8 @@ X11 library by adding the following parameter to the Nim compiler command line:
 Please [file an issue](https://github.com/nimious/io-spacenav/issues), submit a
 [pull request](https://github.com/nimious/io-spacenav/pulls?q=is%3Aopen+is%3Apr)
 or email us at info@nimio.us if this package is out of date or contains bugs.
-For issues related to input devices or the device driver software please visit
-the 3Dconnexion or Spacenav web sites.
+For issues related to input devices or the device driver software visit the
+3Dconnexion or Spacenav web sites below.
 
 
 ## References
