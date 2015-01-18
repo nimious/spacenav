@@ -1,13 +1,15 @@
 # io-spacenav
-Nim bindings for *libspnav*, the free 3Dconnexion device driver.
 
+Nim bindings for *libspnav*, the free 3Dconnexion device driver.
 ![io-spacenav Logo](logo.png)
+
 
 ## About
 
-io-spacenav contains bindings to the Spacenav SDK (libspnav) for the Nim
-programming language. Spacenav provides a free, compatible and open source
-alternative to 3Dconnexion's popular 3D input device drivers and SDK.
+io-spacenav contains bindings to the Spacenav SDK (libspnav) for the
+[Nim](http://nim-lang.org) programming language. Spacenav provides a free,
+compatible and open source alternative to 3Dconnexion's popular 3D input device
+drivers and SDK.
 
 
 ## Supported Platforms
