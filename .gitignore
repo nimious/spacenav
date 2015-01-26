@@ -1,4 +1,5 @@
 nimcache
 .directory
 .kate*
+.sublime*
 examples/spnav_logger_example

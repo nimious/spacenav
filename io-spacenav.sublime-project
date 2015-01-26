@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/gmpreussner/GitHub/Nimious/io-spacenav"
+		}
+	],
+	"settings":
+	{
+		// debug settings
+		"sublimegdb_workingdir": "${folder:${project_path:examples/spnav_logger_example}}",
+		"sublimegdb_commandline": "gdb --interpreter=mi ./spnav_logger_example"
+	}
+}

@@ -14,20 +14,20 @@ drivers and SDK.
 
 ## Supported Platforms
 
-io-spnav was last built and tested with **spacenavd 0.6** and **libspnav 0.2.3**,
-which currently support the following devices:
+io-spnav was last built and tested with **spacenavd 0.6** and
+**libspnav 0.2.3**, which currently support the following devices:
 
 - All USB 3Dconnexion 6DOF devices (Linux)
-- All serial Spaceball devices (Linux, FreeBSD, MacOSX)
+- All serial Spaceball devices (BSD, Linux, MacOSX)
 
 Support for USB devices under Windows and MacOSX is underway, but incomplete.
 The daemon will compile and run, but USB devices may not work or will crash.
 
 The bindings in this package currently support the following platforms:
 
-- ~~FreeBSD~~
+- ~~BSD~~
 - Linux
-- MacOSX
+- Mac OSX
 
 If you wish to use USB based 3Dconnexion devices under MacOSX or Windows, you
 may also consider using the [io-3dxware](https://github.com/nimious/io-3dxware)
@@ -37,11 +37,11 @@ bindings instead.
 ## Prerequisites
 
 To compile the bindings in this package you must have **libspnav**, the Spacenav
-SDK library, installed on your computer. Users of your program also need to
-install and run **spacenavd**, the Spacenav Daemon, that implements the actual
-device driver.
+SDK library, installed on your computer. Users of your program need to install
+and run **spacenavd**, the Spacenav Daemon, that implements the actual device
+driver.
 
-### FreeBSD
+### BSD
 
 TODO
 
@@ -57,9 +57,9 @@ The daemon is available in AUR:
 
 `yaourt spacenavd`
 
-Make sure to verify the available version numbers as they may be very outdated.
-It is then preferable to manually build the daemon and SDK from the source code
-in the Sourceforge repository.
+Make sure to verify the available version numbers as they may be outdated. It is
+then preferable to manually build the daemon and SDK from the source code in the
+Sourceforge repository.
 
 ### MacOSX
 
