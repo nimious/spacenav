@@ -6,7 +6,7 @@
 ## GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.
 ##
 ## ------------
-#
+##
 ## The following program is a basic example of using the `spnav` module to log
 ## events from one or more connected 3Dconnexion devices to the console.
 
