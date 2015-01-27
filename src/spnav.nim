@@ -1,16 +1,33 @@
-#
-#  io-spacenav - Nim wrapper for libspnav, the free 3Dconnexion device driver
-#                (c) Copyright 2015 Headcrash Industries LLC
-#                   https://github.com/nimious/io-spacenav
-#
-# Spacenav and the libspnav library provide a free, compatible alternative to
-# the proprietary 3Dconnexion device driver and SDK, for their 3D input devices,
-# such as SpaceNavigator, SpacePilot and SpaceTraveller (http://spacenav.sf.net)
-#
-# This file is part of the `Nim I/O` package collection for the Nim programming
-# language (http://nimio.us). See the file LICENSE included in this distribution
-# for licensing details. Pull requests for fixes or improvements are encouraged.
-#
+## *io-spacenav* - Nim wrapper for `libspnav <http://spacenav.sf.net>`_, the
+## free 3Dconnexion device driver and SDK.
+##
+## This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
+## See the file LICENSE included in this distribution for licensing details.
+## GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.
+##
+## ------------
+##
+## The *spnav* module declares all types and functions exported by the
+## *libspnav* library. The integration of 3Dconnexion devices using this module
+## typically involves the following three steps:
+##
+## - On application startup, **open a connection** to the Spacenav driver
+##   daemon using `spnavOpen <#spnavOpen>`_
+## - In the application's event loop, **poll the driver** for available input
+##   events using `spnavPollEvent <#spnavPollEvent>`_
+## - **Process** any received `SpnavEvent <#SpnavEvent>`_ events in your
+##   application
+## - **Close the connection** to the Spacenav driver daemon using
+##   `spnavClose <#spnavClose>`_ on application shutdown.
+##
+## Check the *examples* directory of this distribution for demonstrations of
+## this approach.
+##
+## ------------
+##
+## Note: The X11 related Spacenav APIs have been ommitted from this module as
+## they were provided only for backward compatibility with existing 3dxWare
+## based software and are not needed for new applications.
 
 {.deadCodeElim: on.}
 
@@ -22,19 +39,23 @@ elif defined(macosx):
   const
     dllname = "libspnav.dylib"
 else:
-  {.error: "Platform does not support libspnav".}
+  {.error: "io-spacenav requires Linux or Mac OSX".}
 
 
 const
-  SPNAV_ERROR* = -1         ## Error return value for selected procs
-  SPNAV_EVENT_ANY* = 0      ## Matches any event (used by `spnavRemoveEvents`).
-  SPNAV_EVENT_MOTION* = 1   ## Motion event type
-  SPNAV_EVENT_BUTTON* = 2   ## Button event type (includes press and release).
+  spnavError* = -1 ## Error return value for selected procs.
+
+
+type
+  SpnavEventTypes* {.pure, size: sizeof(cint).} = enum
+    any = 0, ## Matches any event
+    motion = 1, ## Motion events
+    button = 2 ## Button events (includes both press and release)
 
 
 type
   SpnavMotionEvent* {.packed.} = object
-    ## Structure for motion events (`spnav_event_motion`)
+    ## Structure for motion events.
     motionType*: cint
     x*, y*, z*: cint
     rx*, ry*, rz*: cint
@@ -42,74 +63,93 @@ type
     data*: ptr cint
 
   SpnavButtonEvent* {.packed.} = object
-    ## Structure for button events (`spnav_event_button`)
+    ## Structure for button events.
     buttonType*: cint
     pressed*: cint
     buttonId*: cint
 
   SpnavEvent* {.packed, union.} = object
-    ## Union type for events (`spnav_event`)
+    ## Union type for events.
     eventType*: cint
     motion*: SpnavMotionEvent
     button*: SpnavButtonEvent
 
 
 proc spnavOpen*(): cint {.cdecl, dynlib: dllname, importc: "spnav_open".}
-  ## Opens a connection to the Spacenav daemon.
+  ## Open a connection to the Spacenav daemon.
   ##
-  ## Returns `SPNAV_ERROR` on failure.
+  ## result
+  ##   - ``0`` on success
+  ##   - `spnavError <#spnavError>`_ on failure
+  ##
+  ## See also `spnavClose <#spnavClose>`_
 
 
 proc spnavClose*(): cint {.cdecl, dynlib: dllname, importc: "spnav_close".}
-  ## Closes a previously opened connection to the Spacenav daemon.
+  ## Close a previously opened connection to the Spacenav daemon.
   ##
-  ## ``Returns``
-  ##    - `SPNAV_ERROR` on failure
+  ## result
+  ##   - ``0`` on success
+  ##   - `spnavError <#spnavError>`_ on failure
+  ##
+  ## See also `spnavOpen <#spnavOpen>`_
 
 
 proc spnavFd*(): cint {.cdecl, dynlib: dllname, importc: "spnav_fd".}
-  ## Retrieves the file descriptor used for communication with the daemon.
+  ## Retrieve the file descriptspnavCloseor used for communication with the daemon.
   ##
-  ## ``Returns``
-  ##    - the file descriptor on success
-  ##    - `SPNAV_ERROR` on error or if no connection is open
+  ## result
+  ##   - The file descriptor on success
+  ##   - `spnavError <#spnavError>`_ on error or if no connection is open
 
 
 proc spnavSensitivity*(sens: float64): cint
   {.cdecl, dynlib: dllname, importc: "spnav_sensitivity".}
-  # TODO: document
+  ## Set the sensitivity of the device(s).
+  ##
+  ## sens
+  ##   The sensitivity to set
+  ## result
+  ##   - ``0`` on success
+  ##   - `spnavError <#spnavError>`_ on failure
 
 
-proc spnavWaitEvent*(event: ptr SpnavEvent): cint
+proc spnavWaitEvent*(event: ptr SpnavEvent): SpnavEventTypes
   {.cdecl, dynlib: dllname, importc: "spnav_wait_event".}
-  ## Blocks waiting for a Spacenav events.
+  ## Wait for Spacenav events.
   ##
-  ## ``Parameters``
-  ##    ``event`` - Pointer to a `SpnavEvent` object that will hold the event data
+  ## event
+  ##   A pointer to a `SpnavEvent` object that will hold the event data if the
+  ##   call succeeded
+  ## result
+  ##   - The event type on success
+  ##   - ``0`` if an error occured
   ##
-  ## ``Returns``
-  ##    - the event type on success
-  ##    - 0 if an error occured
+  ## This function blocks until an event is available. For non-blocking checks
+  ## use `spnavPollEvent <#spnavPollEvent>`_ instead.
 
 
-proc spnavPollEvent*(event: ptr SpnavEvent): cint
+proc spnavPollEvent*(event: ptr SpnavEvent): SpnavEventTypes
   {.cdecl, dynlib: dllname, importc: "spnav_poll_event".}
-  ## Checks for availability of Spacenav events without blocking.
+  ## Check for availability of Spacenav events.
   ##
-  ## ``Parameters``
-  ##    ``event`` - Pointer to a *SpnavEvent* object that will hold the event data
-  ##
-  ## ``Returns``
-  ##    - the event type on success
-  ##    - 0 if no event was available
+  ## event
+  ##   A pointer to a *SpnavEvent* object that will hold the event data if the
+  ##   call succeeded
+  ## result
+  ##   - The event type on success
+  ##   - ``SpnavEventTypes.any`` if no event was available
+  ## 
+  ## Unlike `spnavWaitEvent <#spnavWaitEvent>`_, this function returns
+  ## immediately.
 
-proc spnavRemoveEvents*(eventType: cint): cint
+
+proc spnavRemoveEvents*(eventType: SpnavEventTypes): cint
   {.cdecl, dynlib: dllname, importc: "spnav_remove_events".}
-  ## Removes any pending events of the specified type. Pass *SPNAV_EVENT_ANY* to
-  ## remove all events.
-  ##
-  ## ``Parameters``
-  ##    ``eventType`` - The type of events to remove
-  ##
-  ## ``Returns``
-  ##    - the number of removed events
+  ## Remove any pending events of the specified type.
+  ## 
+  ## eventType
+  ##   The type of events to remove, or ``SpnavEventTypes.any`` to remove all
+  ##   events
+  ## result
+  ##   The number of removed events
