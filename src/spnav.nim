@@ -96,7 +96,7 @@ proc spnavClose*(): cint {.cdecl, dynlib: dllname, importc: "spnav_close".}
 
 
 proc spnavFd*(): cint {.cdecl, dynlib: dllname, importc: "spnav_fd".}
-  ## Retrieve the file descriptspnavCloseor used for communication with the daemon.
+  ## Retrieve the file descriptor used for communication with the daemon.
   ##
   ## result
   ##   - The file descriptor on success
