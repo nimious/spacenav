@@ -1,4 +1,4 @@
-## *io-spacenav* - Nim wrapper for `libspnav <http://spacenav.sf.net>`_, the
+## *io-spacenav* - Nim bindings for `libspnav <http://spacenav.sf.net>`_, the
 ## free 3Dconnexion device driver and SDK.
 ##
 ## This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
@@ -47,7 +47,7 @@ const
 
 
 type
-  SpnavEventTypes* {.pure, size: sizeof(cint).} = enum
+  SpnavEventTypes* {.pure, size: sizeof(cint).} = enum ## Spacenav event types.
     any = 0, ## Matches any event
     motion = 1, ## Motion events
     button = 2 ## Button events (includes both press and release)
@@ -119,8 +119,8 @@ proc spnavWaitEvent*(event: ptr SpnavEvent): SpnavEventTypes
   ## Wait for Spacenav events.
   ##
   ## event
-  ##   A pointer to a `SpnavEvent` object that will hold the event data if the
-  ##   call succeeded
+  ##   A pointer to a `SpnavEvent <#SpnavEvent>`_ object that will hold the
+  ##   event data if the call succeeded
   ## result
   ##   - The event type on success
   ##   - ``0`` if an error occured
@@ -134,11 +134,11 @@ proc spnavPollEvent*(event: ptr SpnavEvent): SpnavEventTypes
   ## Check for availability of Spacenav events.
   ##
   ## event
-  ##   A pointer to a *SpnavEvent* object that will hold the event data if the
-  ##   call succeeded
+  ##   A pointer to a `SpnavEvent <#SpnavEvent>`_ object that will hold the
+  ##   event data if the call succeeded
   ## result
   ##   - The event type on success
-  ##   - ``SpnavEventTypes.any`` if no event was available
+  ##   - `SpnavEventTypes.any <#SpnavEventTypes>`_ if no event was available
   ## 
   ## Unlike `spnavWaitEvent <#spnavWaitEvent>`_, this function returns
   ## immediately.
@@ -149,7 +149,7 @@ proc spnavRemoveEvents*(eventType: SpnavEventTypes): cint
   ## Remove any pending events of the specified type.
   ## 
   ## eventType
-  ##   The type of events to remove, or ``SpnavEventTypes.any`` to remove all
-  ##   events
+  ##   The type of events to remove, or
+  ##   `SpnavEventTypes.any <#SpnavEventTypes>`_ to remove all events
   ## result
   ##   The number of removed events

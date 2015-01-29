@@ -1154,7 +1154,8 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#SpnavEventTypes"
     title="SpnavEventTypes = enum 
-  any = 0, motion = 1,        ## Motion events
+  any = 0,                    ## Matches any event
+  motion = 1,                 ## Motion events
   button = 2                  ## Button events (includes both press and release)"><wbr />Spnav<wbr />Event<wbr />Types</a></li>
   <li><a class="reference" href="#SpnavMotionEvent"
     title="SpnavMotionEvent = object 
@@ -1209,7 +1210,7 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 
   </div>
   <div class="nine columns" id="content">
-  <p class="module-desc"><p><em>io-spacenav</em> - Nim wrapper for <a class="reference external" href="http://spacenav.sf.net">libspnav</a>, the free 3Dconnexion device driver and SDK.</p>
+  <p class="module-desc"><p><em>io-spacenav</em> - Nim bindings for <a class="reference external" href="http://spacenav.sf.net">libspnav</a>, the free 3Dconnexion device driver and SDK.</p>
 <p>This file is part of the <a class="reference external" href="http://nimio.us">Nim I/O</a> package collection. See the file LICENSE included in this distribution for licensing details. GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.</p>
 <hr />
 <p>The <em>spnav</em> module declares all types and functions exported by the <em>libspnav</em> library. The integration of 3Dconnexion devices using this module typically involves the following three steps:</p>
@@ -1226,10 +1227,11 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
 <dt id="SpnavEventTypes"><a name="SpnavEventTypes"></a><pre><span class="Identifier">SpnavEventTypes</span> <span class="Other">=</span> <span class="Keyword">enum</span> 
-  <span class="Identifier">any</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">motion</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">,</span>        <span class="Comment">## Motion events</span>
+  <span class="Identifier">any</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span>                    <span class="Comment">## Matches any event</span>
+  <span class="Identifier">motion</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">,</span>                 <span class="Comment">## Motion events</span>
   <span class="Identifier">button</span> <span class="Other">=</span> <span class="DecNumber">2</span>                  <span class="Comment">## Button events (includes both press and release)</span></pre></dt>
 <dd>
-Matches any event
+Spacenav event types.
 &nbsp;&nbsp;<a
 href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L50"
 class="link-seesrc" target="_blank">Source</a>
@@ -1347,7 +1349,7 @@ class="link-seesrc" target="_blank">Source</a>
     <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;spnav_wait_event&quot;</span><span class="Other">.}</span></pre></dt>
 <dd>
 Wait for Spacenav events.<dl class="docutils"><dt>event</dt>
-<dd>A pointer to a <cite>SpnavEvent</cite> object that will hold the event data if the call succeeded</dd>
+<dd>A pointer to a <a class="reference external" href="#SpnavEvent">SpnavEvent</a> object that will hold the event data if the call succeeded</dd>
 <dt>result</dt>
 <dd><ul class="simple"><li>The event type on success</li>
 <li><tt class="docutils literal"><span class="pre">0</span></tt> if an error occured</li>
@@ -1364,10 +1366,10 @@ class="link-seesrc" target="_blank">Source</a>
     <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;spnav_poll_event&quot;</span><span class="Other">.}</span></pre></dt>
 <dd>
 Check for availability of Spacenav events.<dl class="docutils"><dt>event</dt>
-<dd>A pointer to a <em>SpnavEvent</em> object that will hold the event data if the call succeeded</dd>
+<dd>A pointer to a <a class="reference external" href="#SpnavEvent">SpnavEvent</a> object that will hold the event data if the call succeeded</dd>
 <dt>result</dt>
 <dd><ul class="simple"><li>The event type on success</li>
-<li><tt class="docutils literal"><span class="pre">SpnavEventTypes.any</span></tt> if no event was available</li>
+<li><a class="reference external" href="#SpnavEventTypes">SpnavEventTypes.any</a> if no event was available</li>
 </ul>
 </dd>
 </dl>
@@ -1381,7 +1383,7 @@ class="link-seesrc" target="_blank">Source</a>
     <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;spnav_remove_events&quot;</span><span class="Other">.}</span></pre></dt>
 <dd>
 Remove any pending events of the specified type.<dl class="docutils"><dt>eventType</dt>
-<dd>The type of events to remove, or <tt class="docutils literal"><span class="pre">SpnavEventTypes.any</span></tt> to remove all events</dd>
+<dd>The type of events to remove, or <a class="reference external" href="#SpnavEventTypes">SpnavEventTypes.any</a> to remove all events</dd>
 <dt>result</dt>
 <dd>The number of removed events</dd>
 </dl>
@@ -1400,7 +1402,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-01-27 01:08:47 UTC</small>
+        <small>Made with Nim. Generated: 2015-01-28 20:44:22 UTC</small>
       </div>
     </div>
   </div>
