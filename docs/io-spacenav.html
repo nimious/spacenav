@@ -1182,6 +1182,8 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#spnavError"
     title="spnavError = -1"><wbr />spnav<wbr />Error</a></li>
+  <li><a class="reference" href="#spnavSuccess"
+    title="spnavSuccess = 0"><wbr />spnav<wbr />Success</a></li>
 
   </ul>
 </li>
@@ -1233,7 +1235,7 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
 <dd>
 Spacenav event types.
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L50"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L51"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="SpnavMotionEvent"><a name="SpnavMotionEvent"></a><pre><span class="Identifier">SpnavMotionEvent</span> <span class="Other">=</span> <span class="Keyword">object</span> 
@@ -1246,7 +1248,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Structure for motion events.
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L57"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L58"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="SpnavButtonEvent"><a name="SpnavButtonEvent"></a><pre><span class="Identifier">SpnavButtonEvent</span> <span class="Other">=</span> <span class="Keyword">object</span> 
@@ -1257,7 +1259,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Structure for button events.
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L65"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L66"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="SpnavEvent"><a name="SpnavEvent"></a><pre><span class="Identifier">SpnavEvent</span> <span class="Other">=</span> <span class="Keyword">object</span> 
@@ -1268,7 +1270,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Union type for events.
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L71"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 
@@ -1278,9 +1280,16 @@ class="link-seesrc" target="_blank">Source</a>
 <dl class="item">
 <dt id="spnavError"><a name="spnavError"></a><pre><span class="Identifier">spnavError</span> <span class="Other">=</span> <span class="DecNumber">-1</span></pre></dt>
 <dd>
-Error return value for selected procs.
+Error return code for selected procs.
 &nbsp;&nbsp;<a
 href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L46"
+class="link-seesrc" target="_blank">Source</a>
+</dd>
+<dt id="spnavSuccess"><a name="spnavSuccess"></a><pre><span class="Identifier">spnavSuccess</span> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+Success return code for selected procs.
+&nbsp;&nbsp;<a
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L47"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 
@@ -1291,7 +1300,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dt id="spnavOpen"><a name="spnavOpen,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavOpen</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;spnav_open&quot;</span><span class="Other">.}</span></pre></dt>
 <dd>
 Open a connection to the Spacenav daemon.<dl class="docutils"><dt>result</dt>
-<dd><ul class="simple"><li><tt class="docutils literal"><span class="pre">0</span></tt> on success</li>
+<dd><ul class="simple"><li><a class="reference external" href="#spnavSuccess">spnavSuccess</a> on success</li>
 <li><a class="reference external" href="#spnavError">spnavError</a> on failure</li>
 </ul>
 </dd>
@@ -1299,13 +1308,13 @@ Open a connection to the Spacenav daemon.<dl class="docutils"><dt>result</dt>
 <p>See also <a class="reference external" href="#spnavClose">spnavClose</a></p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L78"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L79"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="spnavClose"><a name="spnavClose,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavClose</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;spnav_close&quot;</span><span class="Other">.}</span></pre></dt>
 <dd>
 Close a previously opened connection to the Spacenav daemon.<dl class="docutils"><dt>result</dt>
-<dd><ul class="simple"><li><tt class="docutils literal"><span class="pre">0</span></tt> on success</li>
+<dd><ul class="simple"><li><a class="reference external" href="#spnavSuccess">spnavSuccess</a> on success</li>
 <li><a class="reference external" href="#spnavError">spnavError</a> on failure</li>
 </ul>
 </dd>
@@ -1313,7 +1322,7 @@ Close a previously opened connection to the Spacenav daemon.<dl class="docutils"
 <p>See also <a class="reference external" href="#spnavOpen">spnavOpen</a></p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L88"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L89"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="spnavFd"><a name="spnavFd,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavFd</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;spnav_fd&quot;</span><span class="Other">.}</span></pre></dt>
@@ -1326,7 +1335,7 @@ Retrieve the file descriptor used for communication with the daemon.<dl class="d
 </dl>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L98"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L99"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="spnavSensitivity"><a name="spnavSensitivity,float64"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavSensitivity</span><span class="Other">(</span><span class="Identifier">sens</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> <span class="Identifier">dynlib</span><span class="Other">:</span> <span class="Identifier">dllname</span><span class="Other">,</span> 
@@ -1335,14 +1344,14 @@ class="link-seesrc" target="_blank">Source</a>
 Set the sensitivity of the device(s).<dl class="docutils"><dt>sens</dt>
 <dd>The sensitivity to set</dd>
 <dt>result</dt>
-<dd><ul class="simple"><li><tt class="docutils literal"><span class="pre">0</span></tt> on success</li>
+<dd><ul class="simple"><li><a class="reference external" href="#spnavSuccess">spnavSuccess</a> on success</li>
 <li><a class="reference external" href="#spnavError">spnavError</a> on failure</li>
 </ul>
 </dd>
 </dl>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L106"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L107"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="spnavWaitEvent"><a name="spnavWaitEvent,ptr.SpnavEvent"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavWaitEvent</span><span class="Other">(</span><span class="Identifier">event</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">SpnavEvent</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">SpnavEventTypes</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> 
@@ -1359,7 +1368,7 @@ Wait for Spacenav events.<dl class="docutils"><dt>event</dt>
 <p>This function blocks until an event is available. For non-blocking checks use <a class="reference external" href="#spnavPollEvent">spnavPollEvent</a> instead.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L117"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L118"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="spnavPollEvent"><a name="spnavPollEvent,ptr.SpnavEvent"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavPollEvent</span><span class="Other">(</span><span class="Identifier">event</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">SpnavEvent</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">SpnavEventTypes</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> 
@@ -1376,7 +1385,7 @@ Check for availability of Spacenav events.<dl class="docutils"><dt>event</dt>
 <p>Unlike <a class="reference external" href="#spnavWaitEvent">spnavWaitEvent</a>, this function returns immediately.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L132"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L133"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="spnavRemoveEvents"><a name="spnavRemoveEvents,SpnavEventTypes"></a><pre><span class="Keyword">proc</span> <span class="Identifier">spnavRemoveEvents</span><span class="Other">(</span><span class="Identifier">eventType</span><span class="Other">:</span> <span class="Identifier">SpnavEventTypes</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other">{.</span><span class="Identifier">cdecl</span><span class="Other">,</span> 
@@ -1389,7 +1398,7 @@ Remove any pending events of the specified type.<dl class="docutils"><dt>eventTy
 </dl>
 
 &nbsp;&nbsp;<a
-href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L147"
+href="https://github.com/nimious/io-spacenav/tree/master/src/spnav.nim#L148"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 
@@ -1402,7 +1411,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-01-31 00:02:59 UTC</small>
+        <small>Made with Nim. Generated: 2015-02-01 18:42:24 UTC</small>
       </div>
     </div>
   </div>
