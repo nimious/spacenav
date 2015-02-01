@@ -39,11 +39,12 @@ elif defined(macosx):
   const
     dllname = "libspnav.dylib"
 else:
-  {.error: "io-spacenav requires Linux or Mac OSX".}
+  {.error: "io-spacenav does not support this platform".}
 
 
 const
-  spnavError* = -1 ## Error return value for selected procs.
+  spnavError* = -1 ## Error return code for selected procs.
+  spnavSuccess* = 0 ## Success return code for selected procs.
 
 
 type
@@ -79,7 +80,7 @@ proc spnavOpen*(): cint {.cdecl, dynlib: dllname, importc: "spnav_open".}
   ## Open a connection to the Spacenav daemon.
   ##
   ## result
-  ##   - ``0`` on success
+  ##   - `spnavSuccess <#spnavSuccess>`_ on success
   ##   - `spnavError <#spnavError>`_ on failure
   ##
   ## See also `spnavClose <#spnavClose>`_
@@ -89,7 +90,7 @@ proc spnavClose*(): cint {.cdecl, dynlib: dllname, importc: "spnav_close".}
   ## Close a previously opened connection to the Spacenav daemon.
   ##
   ## result
-  ##   - ``0`` on success
+  ##   - `spnavSuccess <#spnavSuccess>`_ on success
   ##   - `spnavError <#spnavError>`_ on failure
   ##
   ## See also `spnavOpen <#spnavOpen>`_
@@ -110,7 +111,7 @@ proc spnavSensitivity*(sens: float64): cint
   ## sens
   ##   The sensitivity to set
   ## result
-  ##   - ``0`` on success
+  ##   - `spnavSuccess <#spnavSuccess>`_ on success
   ##   - `spnavError <#spnavError>`_ on failure
 
 

@@ -1,4 +1,4 @@
-## *io-spacenav* - Nim wrapper for `libspnav <http://spacenav.sf.net>`_, the
+## *io-spacenav* - Nim bindings for `libspnav <http://spacenav.sf.net>`_, the
 ## free 3Dconnexion device driver and SDK.
 ##
 ## This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
