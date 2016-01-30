@@ -1,5 +1,5 @@
-## *io-spacenav* - Nim bindings for `libspnav <http://spacenav.sf.net>`_, the
-## free 3Dconnexion device driver and SDK.
+## *spacenav* - Nim bindings for `libspnav <http://spacenav.sf.net>`_, the free
+## 3Dconnexion device driver and SDK.
 ##
 ## This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 ## See the file LICENSE included in this distribution for licensing details.
@@ -39,7 +39,7 @@ elif defined(macosx):
   const
     dllname = "libspnav.dylib"
 else:
-  {.error: "io-spacenav does not support this platform".}
+  {.error: "spacenav does not support this platform".}
 
 
 const
@@ -140,7 +140,7 @@ proc spnavPollEvent*(event: ptr SpnavEvent): SpnavEventTypes
   ## result
   ##   - The event type on success
   ##   - `SpnavEventTypes.any <#SpnavEventTypes>`_ if no event was available
-  ## 
+  ##
   ## Unlike `spnavWaitEvent <#spnavWaitEvent>`_, this function returns
   ## immediately.
 
@@ -148,7 +148,7 @@ proc spnavPollEvent*(event: ptr SpnavEvent): SpnavEventTypes
 proc spnavRemoveEvents*(eventType: SpnavEventTypes): cint
   {.cdecl, dynlib: dllname, importc: "spnav_remove_events".}
   ## Remove any pending events of the specified type.
-  ## 
+  ##
   ## eventType
   ##   The type of events to remove, or
   ##   `SpnavEventTypes.any <#SpnavEventTypes>`_ to remove all events
